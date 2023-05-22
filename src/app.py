@@ -328,15 +328,15 @@ app.layout = \
 
         #row1
         dbc.Row([
-            dbc.Col([dcc.Graph(figure=indicator_curr('Total Revenue', revenue(data), None), style=indicator_style, config={'displayModeBar': False})], 
+            dbc.Col([], 
                     id = 'total-revenue', width = 2, class_name='p-1 order-6'),
-            dbc.Col([dcc.Graph(figure=indicator('Total no Of Order', total_orders(data), None), style=indicator_style, config={'displayModeBar': False})], 
+            dbc.Col([], 
                     id = 'total-orders', width = 2, class_name='p-1 '),
-            dbc.Col([dcc.Graph(figure=indicator_curr('Total Cost of Shipping', freight(data), None), style=indicator_style, config={'displayModeBar': False})], 
+            dbc.Col([], 
                     id = 'total-shipping', width = 2, class_name='p-1'),
-            dbc.Col([dcc.Graph(figure=indicator('No Of Customers', total_customers(data), None), style=indicator_style, config={'displayModeBar': False})], 
+            dbc.Col([], 
                     id = 'customers', width = 2, class_name='p-1'),
-            dbc.Col([dcc.Graph(figure=indicator_days('Avg Days before Shipping', avg_days_shipping(data), None), style=indicator_style, config={'displayModeBar': False})], 
+            dbc.Col([], 
                     id = 'shipping-days', width = 2, class_name='p-1'),
                         dbc.Col([dcc.Graph(figure=indicator('Outstanding Orders', oustanding_orders(data), None), style=indicator_style, config={'displayModeBar': False})], 
                     id = 'outstanding-orders', width = 2, class_name='p-1'),
@@ -346,11 +346,11 @@ app.layout = \
         #row2
         dbc.Row([
             
-            dbc.Col([dcc.Graph(figure= sales_revenue(data), style=graph_style, config={'displayModeBar': False})], 
+            dbc.Col([], 
                     width = 6, class_name='p-1', id='sales-revenue'),
-            dbc.Col([dcc.Graph(figure=top_products(data), style=graph_style, config={'displayModeBar': False})], 
+            dbc.Col([], 
                     width = 3, class_name='p-1',  id='top-products'),
-            dbc.Col([dcc.Graph(figure=top_productscat(data), style=graph_style, config={'displayModeBar': False})], 
+            dbc.Col([], 
                     width = 3, class_name='p-1',  id='top-categories'),
             
         ], justify='center', style={"height": "40%"}),
@@ -358,11 +358,11 @@ app.layout = \
         #row3
         dbc.Row([
             
-            dbc.Col([dcc.Graph(figure=top_customers, style=graph_style, config={'displayModeBar': False})
+            dbc.Col([
                     ], width = 3, class_name='p-1', id='top-customers'),
-            dbc.Col([dcc.Graph(figure=order_location(data), style=graph_style, config={'displayModeBar': False})],
+            dbc.Col([],
                     width = 3, class_name='p-1', id='order-location'),
-            dbc.Col([dcc.Graph(figure=order_shippers(data), style=graph_style, config={'displayModeBar': False})],
+            dbc.Col([],
                     width = 3, class_name='p-1', id='top-shippers'),
             dbc.Col([html.Div(children='Top Employees'),
                 dbc.Table.from_dataframe(top_employees(data), striped=True, bordered=True, hover=True, responsive=True, style = table_style,
@@ -459,7 +459,7 @@ def update_indicators(data, prev_data):
         fig_cust = dcc.Graph(figure=indicator('No Of Customers', total_customers(data), total_customers(prev_data)), style=indicator_style, 
                              config={'displayModeBar': False})
         
-        #sales employees
+        #Outstanding orders
         fig_outst = dcc.Graph(figure=indicator('Outstanding Orders', oustanding_orders(data), oustanding_orders(data)), style=indicator_style, 
                             config={'displayModeBar': False})
         
@@ -487,7 +487,7 @@ def update_graphs(data):
     sales_rev = dcc.Graph(figure= sales_revenue(data), style=graph_style, config={'displayModeBar': False})
     top_prod = dcc.Graph(figure=top_products(data), style=graph_style, config={'displayModeBar': False})
     top_cat = dcc.Graph(figure=top_productscat(data), style=graph_style, config={'displayModeBar': False})
-    top_cost = dcc.Graph(figure=top_customers, style=graph_style, config={'displayModeBar': False})
+    top_cost = dcc.Graph(figure=top_customers(data), style=graph_style, config={'displayModeBar': False})
     ord_loc = dcc.Graph(figure=order_location(data), style=graph_style, config={'displayModeBar': False})
     top_ship = dcc.Graph(figure=order_shippers(data), style=graph_style, config={'displayModeBar': False})
     top_empl = dbc.Table.from_dataframe(top_employees(data), striped=True, bordered=True, hover=True, responsive=True, style = table_style)
