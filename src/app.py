@@ -197,6 +197,8 @@ def oustanding_orders(df):
     outst = df['shippedDate'].isna().sum()
     return outst
 
+data = pd.read_csv('northwind.csv', index_col =[0])
+
 #-------------------------------------------------------------------
 #PRESET STYLES AND INDICATORS
 #-------------------------------------------------------------------
