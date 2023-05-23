@@ -301,7 +301,7 @@ server = app.server
 # creates the layout of the App
 app.layout = \
     dbc.Container([
-        #Headers
+         #Headers
         dbc.Row([
             #logo
             dbc.Col([
@@ -316,29 +316,29 @@ app.layout = \
                  html.H1('NORTHWIND TRADER ', className='text-center', style={"color": "#FFFFFF"}),
                  html.H5('Sales & Performance Dashboard', className='text-center', style={"color": "#FFFFFF"}),
             ], #width=6
-             xs=7, sm=7, md=7, lg=7, xl=7, className='p-3', align='center'),
+             xs=8, sm=8, md=8, lg=8, xl=8, className='p-1', align='center'),
 
            #date filter
             dbc.Col([
                 timeframe_dropdown
                     ],# width=2, 
-                     xs=3, sm=3, md=3, lg=2, xl=3, style={'width': '25%', 'height': '100%'},
+                     xs=2, sm=2, md=2, lg=2, xl=2, style={'width': '10%', 'height': '100%'},
                     className='text-center p-2', align='right'),
         ], justify='center', style={"height": "10%",'background': '#2e97a4'}), #, "background-color": "cyan"
 
         #row1
         dbc.Row([
-            dbc.Col([], 
+            dbc.Col([dcc.Graph(figure=indicator_curr('Total Revenue', revenue(data), None), style=indicator_style, config={'displayModeBar': False})], 
                     id = 'total-revenue', width = 2, class_name='p-1 order-6'),
-            dbc.Col([], 
+            dbc.Col([dcc.Graph(figure=indicator('Total no Of Order', total_orders(data), None), style=indicator_style, config={'displayModeBar': False})], 
                     id = 'total-orders', width = 2, class_name='p-1 '),
-            dbc.Col([], 
+            dbc.Col([dcc.Graph(figure=indicator_curr('Total Cost of Shipping', freight(data), None), style=indicator_style, config={'displayModeBar': False})], 
                     id = 'total-shipping', width = 2, class_name='p-1'),
-            dbc.Col([], 
+            dbc.Col([dcc.Graph(figure=indicator('No Of Customers', total_customers(data), None), style=indicator_style, config={'displayModeBar': False})], 
                     id = 'customers', width = 2, class_name='p-1'),
-            dbc.Col([], 
+            dbc.Col([dcc.Graph(figure=indicator_days('Avg Days before Shipping', avg_days_shipping(data), None), style=indicator_style, config={'displayModeBar': False})], 
                     id = 'shipping-days', width = 2, class_name='p-1'),
-                        dbc.Col([dcc.Graph(figure=indicator('Outstanding Orders', oustanding_orders(data), None), style=indicator_style, config={'displayModeBar': False})], 
+            dbc.Col([dcc.Graph(figure=indicator('Outstanding Orders', oustanding_orders(data), None), style=indicator_style, config={'displayModeBar': False})], 
                     id = 'outstanding-orders', width = 2, class_name='p-1'),
             
         ], justify='center', style={"height": "15%"}),
@@ -346,11 +346,11 @@ app.layout = \
         #row2
         dbc.Row([
             
-            dbc.Col([], 
+            dbc.Col([dcc.Graph(figure= sales_revenue(data), style=graph_style, config={'displayModeBar': False})], 
                     width = 6, class_name='p-1', id='sales-revenue'),
-            dbc.Col([], 
+            dbc.Col([dcc.Graph(figure=top_products(data), style=graph_style, config={'displayModeBar': False})], 
                     width = 3, class_name='p-1',  id='top-products'),
-            dbc.Col([], 
+            dbc.Col([dcc.Graph(figure=top_productscat(data), style=graph_style, config={'displayModeBar': False})], 
                     width = 3, class_name='p-1',  id='top-categories'),
             
         ], justify='center', style={"height": "40%"}),
@@ -358,11 +358,11 @@ app.layout = \
         #row3
         dbc.Row([
             
-            dbc.Col([
+            dbc.Col([dcc.Graph(figure=top_customers, style=graph_style, config={'displayModeBar': False})
                     ], width = 3, class_name='p-1', id='top-customers'),
-            dbc.Col([],
+            dbc.Col([dcc.Graph(figure=order_location(data), style=graph_style, config={'displayModeBar': False})],
                     width = 3, class_name='p-1', id='order-location'),
-            dbc.Col([],
+            dbc.Col([dcc.Graph(figure=order_shippers(data), style=graph_style, config={'displayModeBar': False})],
                     width = 3, class_name='p-1', id='top-shippers'),
             dbc.Col([html.Div(children='Top Employees'),
                 dbc.Table.from_dataframe(top_employees(data), striped=True, bordered=True, hover=True, responsive=True, style = table_style,
@@ -496,4 +496,4 @@ def update_graphs(data):
 
 if __name__ == '__main__':
     # starts the server
-    app.run_server() #mode='jupyterlab',
+    app.run_server()
