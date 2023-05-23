@@ -358,7 +358,7 @@ app.layout = \
         #row3
         dbc.Row([
             
-            dbc.Col([dcc.Graph(figure=top_customers, style=graph_style, config={'displayModeBar': False})
+            dbc.Col([dcc.Graph(figure=top_customers(data), style=graph_style, config={'displayModeBar': False})
                     ], width = 3, class_name='p-1', id='top-customers'),
             dbc.Col([dcc.Graph(figure=order_location(data), style=graph_style, config={'displayModeBar': False})],
                     width = 3, class_name='p-1', id='order-location'),
