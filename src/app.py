@@ -288,7 +288,7 @@ timeframe_dropdown = html.Div([
         multi=False,
         #options=['2000', '2021', '2030'],
         options=[{'label': timeframe, 'value': timeframe} for timeframe in [2013, 2014, 2015]],
-        value=None,
+        value=2015,
     )
 ], style={'width': '60%'})
 
